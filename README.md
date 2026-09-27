@@ -31,21 +31,27 @@ TaskMatrix aims to provide a centralized workspace where teams can manage their 
 ## Target Users
 
 ### Project Managers
+
 - Create and manage projects
 - Monitor project progress
 - Assign tasks to team members
 - Track deadlines
+- Monitor team workload
 
 ### Developers
+
 - View assigned tasks
 - Update task status
 - Manage priorities
-- Track their workload
+- Track workload
+- Monitor project progress
 
 ### Team Members
+
 - View project activity
 - Collaborate through task information
 - Monitor assigned work
+- Track deadlines and priorities
 
 ---
 
@@ -56,24 +62,32 @@ Features are prioritized according to the capstone requirements.
 ## P0 — Mandatory MVP
 
 ### Authentication
+
 - User registration
 - User login
 - Logout
 - Protected application routes
+- Authentication state management
 
 ### Dashboard
+
 - Project overview
 - Task statistics
 - Progress indicators
 - Recent activity
+- Project and task summaries
 
 ### Project Management
+
 - Create projects
 - View projects
 - View project details
-- Project status
+- Edit projects
+- Delete projects
+- Project status management
 
 ### Task Management
+
 - Create tasks
 - View tasks
 - Edit tasks
@@ -81,14 +95,17 @@ Features are prioritized according to the capstone requirements.
 - Assign tasks
 - Task status management
 - Task priority management
+- Task due dates
 
 ### Global State Management
+
 Redux Toolkit will manage application-wide state including:
 
 - Authentication state
 - Project state
 - Task state
 - Filter state
+- Team state
 - UI/theme state
 
 ---
@@ -96,6 +113,7 @@ Redux Toolkit will manage application-wide state including:
 ## P1 — Priority Features
 
 ### Task Filtering
+
 Users will be able to filter tasks by:
 
 - Status
@@ -105,16 +123,19 @@ Users will be able to filter tasks by:
 - Due date
 
 ### Search
+
 - Search projects
 - Search tasks
 - Search team members
 
 ### Team Management
+
 - View team members
 - Assign members to projects
 - View member workload
 
 ### Project Details
+
 - Project information
 - Project task list
 - Project progress
@@ -122,6 +143,7 @@ Users will be able to filter tasks by:
 - Project activity
 
 ### Responsive Interface
+
 The application will support:
 
 - Desktop
@@ -163,6 +185,7 @@ Project managers can view:
 - Project progress
 - Team workload
 - Completed vs pending tasks
+- Task distribution
 
 ### Dark / Light Theme
 
@@ -232,48 +255,91 @@ Planned authentication architecture:
 
 # UI/UX Design
 
-The interface will follow a modern enterprise dashboard design.
+The interface follows a modern enterprise SaaS dashboard design focused on clarity, consistency, accessibility, and responsive usability.
 
-The initial Figma design will include at least three core viewports:
+The Sprint 13 Figma design contains the following core viewports:
 
 1. Authentication Screen
 2. Main Dashboard
-3. Project / Task Details View
+3. Project Details
 
-Additional planned screens include:
+### Core UI/UX Screens
 
-- Project List
-- Task Management
-- Team Management
-- User Profile
-- Settings
+#### Authentication Screen
+
+Provides:
+
+- Login interface
+- Email and password fields
+- Authentication actions
+- Account access options
+
+#### Main Dashboard
+
+Provides:
+
+- Project overview
+- Task statistics
+- Progress visualization
+- Recent projects
+- Recent tasks
+- Team activity
+
+#### Project Details
+
+Provides:
+
+- Project information
+- Project status
+- Priority
+- Project progress
+- Task list
+- Team members
+- Project activity
 
 ### Figma Design
 
-_Figma link will be added after the UI/UX wireframes are completed._
+[TaskMatrix — UI/UX Wireframes](https://www.figma.com/design/Rp4KbF38fmzQkKwoGuG0jk/TaskMatrix-%E2%80%94-UI-UX-Wireframes)
 
 ---
 
-# Planned Application Architecture
+### UI Preview
+
+#### Authentication
+
+![TaskMatrix Authentication](Authentication.png)
+
+#### Dashboard
+
+![TaskMatrix Dashboard](Dashboard.png)
+
+#### Project Details
+
+![TaskMatrix Project Details](project-details.png)
+
+
+# Application Architecture
+
+## Frontend Architecture
 
 ```text
-                    TaskMatrix
-                        |
-                        v
-                Next.js Application
-                        |
-        +---------------+---------------+
-        |                               |
-        v                               v
-   UI Components                    Redux Toolkit
-        |                               |
-        +---------------+---------------+
-                        |
-                        v
-                    API Layer
-                        |
-                        v
-                  Express.js API
-                        |
-                        v
-                    MongoDB
+                         TaskMatrix
+                              |
+                       Next.js / React
+                              |
+              +---------------+---------------+
+              |                               |
+        UI Components                    Redux Toolkit
+              |                               |
+      +-------+-------+             +---------+---------+
+      |       |       |             |         |         |
+     Auth  Dashboard Projects      Auth     Projects  Tasks
+              |                       State    State    State
+              |
+         API Service Layer
+              |
+        Mock REST API
+              |
+      +-------+-------+
+      |       |       |
+   Projects  Tasks   Users
