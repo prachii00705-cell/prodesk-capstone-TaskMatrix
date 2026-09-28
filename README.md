@@ -4,7 +4,7 @@
 
 TaskMatrix is a commercial-grade Agile project management application designed to help development teams plan projects, organize tasks, track progress, manage team members, and monitor project activity from a centralized dashboard.
 
-The project is being developed as a 4-week Prodesk Capstone project.
+The project is being developed as a 4-week Prodesk Capstone project under the **Frontend Specialist** track.
 
 ---
 
@@ -17,20 +17,23 @@ The project is being developed as a 4-week Prodesk Capstone project.
 | Designated Track | Frontend Specialist |
 | Repository | `prodesk-capstone-TaskMatrix` |
 | Development Duration | 4 Weeks |
+| Current Sprint | Sprint 14 — Walking Skeleton |
+| Framework | Next.js 16 |
+| Language | TypeScript |
 
 ---
 
-## Problem Statement
+# Problem Statement
 
 Development teams often rely on multiple disconnected tools to manage projects, tasks, team members, deadlines, and progress.
 
-TaskMatrix aims to provide a centralized workspace where teams can manage their Agile workflow through projects, tasks, dashboards, filters, and team collaboration features.
+TaskMatrix aims to provide a centralized workspace where teams can manage their Agile workflow through projects, tasks, dashboards, filters, team collaboration, and project activity.
 
 ---
 
-## Target Users
+# Target Users
 
-### Project Managers
+## Project Managers
 
 - Create and manage projects
 - Monitor project progress
@@ -38,7 +41,7 @@ TaskMatrix aims to provide a centralized workspace where teams can manage their 
 - Track deadlines
 - Monitor team workload
 
-### Developers
+## Developers
 
 - View assigned tasks
 - Update task status
@@ -46,7 +49,7 @@ TaskMatrix aims to provide a centralized workspace where teams can manage their 
 - Track workload
 - Monitor project progress
 
-### Team Members
+## Team Members
 
 - View project activity
 - Collaborate through task information
@@ -57,7 +60,7 @@ TaskMatrix aims to provide a centralized workspace where teams can manage their 
 
 # Core Features
 
-Features are prioritized according to the capstone requirements.
+Features are prioritized according to the Prodesk Capstone requirements.
 
 ## P0 — Mandatory MVP
 
@@ -99,14 +102,14 @@ Features are prioritized according to the capstone requirements.
 
 ### Global State Management
 
-Redux Toolkit will manage application-wide state including:
+Redux Toolkit is used for application-wide state management, including:
 
 - Authentication state
 - Project state
 - Task state
 - Filter state
 - Team state
-- UI/theme state
+- UI state
 
 ---
 
@@ -144,7 +147,7 @@ Users will be able to filter tasks by:
 
 ### Responsive Interface
 
-The application will support:
+The application is designed to support:
 
 - Desktop
 - Tablet
@@ -201,9 +204,9 @@ A global theme manager will provide:
 
 ## Frontend
 
-- Next.js
+- Next.js 16
 - React
-- JavaScript
+- TypeScript
 - HTML5
 - CSS3
 
@@ -238,7 +241,7 @@ Planned database:
 
 ## Authentication
 
-Planned authentication architecture:
+Planned production authentication architecture:
 
 - JWT
 - Secure password hashing
@@ -255,7 +258,14 @@ Planned authentication architecture:
 
 # UI/UX Design
 
-The interface follows a modern enterprise SaaS dashboard design focused on clarity, consistency, accessibility, and responsive usability.
+The interface follows a modern enterprise SaaS dashboard design focused on:
+
+- Clarity
+- Consistency
+- Accessibility
+- Responsive usability
+- Simple navigation
+- Professional dashboard presentation
 
 The Sprint 13 Figma design contains the following core viewports:
 
@@ -263,9 +273,9 @@ The Sprint 13 Figma design contains the following core viewports:
 2. Main Dashboard
 3. Project Details
 
-### Core UI/UX Screens
+## Core UI/UX Screens
 
-#### Authentication Screen
+### Authentication Screen
 
 Provides:
 
@@ -273,8 +283,9 @@ Provides:
 - Email and password fields
 - Authentication actions
 - Account access options
+- Registration navigation
 
-#### Main Dashboard
+### Main Dashboard
 
 Provides:
 
@@ -285,7 +296,7 @@ Provides:
 - Recent tasks
 - Team activity
 
-#### Project Details
+### Project Details
 
 Provides:
 
@@ -297,26 +308,27 @@ Provides:
 - Team members
 - Project activity
 
-### Figma Design
+## Figma Design
 
 [TaskMatrix — UI/UX Wireframes](https://www.figma.com/design/Rp4KbF38fmzQkKwoGuG0jk/TaskMatrix-%E2%80%94-UI-UX-Wireframes)
 
 ---
 
-### UI Preview
+# UI Preview
 
-#### Authentication
+## Authentication
 
-![TaskMatrix Authentication](Authentication.png)
+![TaskMatrix Authentication](assets/Authentication.png)
 
-#### Dashboard
+## Dashboard
 
-![TaskMatrix Dashboard](Dashboard.png)
+![TaskMatrix Dashboard](assets/Dashboard.png)
 
-#### Project Details
+## Project Details
 
-![TaskMatrix Project Details](project-details.png)
+![TaskMatrix Project Details](assets/project-details.png)
 
+---
 
 # Application Architecture
 
@@ -325,21 +337,21 @@ Provides:
 ```text
                          TaskMatrix
                               |
-                       Next.js / React
+                       Next.js 16 / React
                               |
               +---------------+---------------+
               |                               |
         UI Components                    Redux Toolkit
               |                               |
-      +-------+-------+             +---------+---------+
-      |       |       |             |         |         |
-     Auth  Dashboard Projects      Auth     Projects  Tasks
-              |                       State    State    State
+      +-------+--------+              +-------+--------+
+      |       |        |              |       |        |
+     Auth  Dashboard  Projects       Auth  Projects  Tasks
+                                      State   State    State
               |
-         API Service Layer
+       Service Layer
               |
-        Mock REST API
+        Mock API Layer
               |
-      +-------+-------+
-      |       |       |
-   Projects  Tasks   Users
+      +-------+--------+
+      |       |        |
+   Projects  Tasks    Users
